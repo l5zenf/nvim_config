@@ -14,23 +14,23 @@ return {
       set("n", "<C-leftdrag>", mc.handleMouseDrag)
 
       -- Add/skip cursor above/below
-      set("n", "<c-k>", function() mc.lineAddCursor(-1) end)
-      set("n", "<c-j>", function() mc.lineAddCursor(1) end)
-      set("n", "<s-up>", function() mc.lineSkipCursor(-1) end)
-      set("n", "<s-down>", function() mc.lineSkipCursor(1) end)
+      set("n", "<leader>mk", function() mc.lineAddCursor(-1) end, { desc = "Add Cursor Above" })
+      set("n", "<leader>mj", function() mc.lineAddCursor(1) end, { desc = "Add Cursor Below" })
+      set("n", "<leader>mK", function() mc.lineSkipCursor(-1) end, { desc = "Skip Cursor Above" })
+      set("n", "<leader>mJ", function() mc.lineSkipCursor(1) end, { desc = "Skip Cursor Below" })
 
       -- Add all matches
-      set("n", "<c-a>", mc.matchAllAddCursors)
+      set("n", "<leader>ma", mc.matchAllAddCursors, { desc = "Add Cursors to Matches" })
 
       -- Rotate cursor
-      set("n", "<c-n>", mc.nextCursor)
-      set("n", "<c-p>", mc.prevCursor)
+      set("n", "<leader>mn", mc.nextCursor, { desc = "Next Cursor" })
+      set("n", "<leader>mp", mc.prevCursor, { desc = "Previous Cursor" })
 
       -- Delete cursor
-      set("n", "<c-x>", mc.deleteCursor)
+      set("n", "<leader>mx", mc.deleteCursor, { desc = "Delete Cursor" })
 
       -- Align cursors
-      set("n", "<leader>a", mc.alignCursors)
+      set("n", "<leader>ml", mc.alignCursors, { desc = "Align Cursors" })
     end,
   },
 }

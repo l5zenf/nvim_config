@@ -4,12 +4,8 @@ return {
     opts = {
       -- === 功能模块 ===
       words = { enabled = true },
-      image = { enable = true },
-      statuscolumn = { enabled = true },
-      indent = { enabled = true },
-      dim = { enabled = true },
+      image = { enabled = true },
       scratch = { enabled = true },
-      zen = { enabled = true },
       picker = {
         sources = {
           explorer = {
@@ -19,6 +15,7 @@ return {
         },
       },
       indent = {
+        enabled = true,
         indent = {
           char = "│",
           only_scope = false,
@@ -36,6 +33,7 @@ return {
         },
       },
       dim = {
+        enabled = true,
         scope = {
           min_size = 5,
           max_size = 40,
@@ -47,6 +45,7 @@ return {
         },
       },
       zen = {
+        enabled = true,
         toggles = {
           dim = true,
           git_signs = false,
@@ -60,6 +59,7 @@ return {
         },
       },
       statuscolumn = {
+        enabled = true,
         left = { "mark", "sign" },
         right = { "fold", "git" },
         folds = {
@@ -69,15 +69,6 @@ return {
       },
     },
     keys = {
-      -- Picker
-      {
-        "<leader>fp",
-        function()
-          Snacks.picker.projects()
-        end,
-        desc = "Projects",
-      },
-
       -- Zen mode
       {
         "<leader>uz",
@@ -101,22 +92,6 @@ return {
           Snacks.dim()
         end,
         desc = "Toggle Dim",
-      },
-
-      -- Scratch buffer
-      {
-        "<leader>.",
-        function()
-          Snacks.scratch()
-        end,
-        desc = "Toggle Scratch Buffer",
-      },
-      {
-        "<leader>S",
-        function()
-          Snacks.scratch.select()
-        end,
-        desc = "Select Scratch Buffer",
       },
 
       -- Git browse (open file on GitHub/GitLab)

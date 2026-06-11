@@ -26,20 +26,6 @@ vim.api.nvim_create_autocmd("BufWritePre", {
   end,
 })
 
--- Auto-save with debounce on common "done editing" transitions.
-
--- 大文件性能优化 (>1MB)
-vim.api.nvim_create_autocmd("BufReadPre", {
-  callback = function()
-    local size = vim.fn.getfsize(vim.fn.expand("<afile>"))
-    if size > 1024 * 1024 then
-      vim.opt_local.eventignore = "all"
-      vim.opt_local.foldmethod = "manual"
-      vim.opt_local.undofile = false
-    end
-  end,
-})
-
 -- Fix file type detection for uppercase file extensions
 vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
   pattern = "*",

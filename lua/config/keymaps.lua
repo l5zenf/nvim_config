@@ -4,7 +4,6 @@
 
 -- 不覆盖 LazyVim 默认快捷键，仅补充缺失的功能
 
-vim.keymap.set("n", "<leader>n", "<cmd>Noice telescope<cr>", { desc = "Notification" })
 -- Clear search highlight
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR><Esc>", { desc = "Clear search highlight" })
 
@@ -30,7 +29,6 @@ vim.keymap.set("n", "]q", vim.cmd.cnext, { desc = "Next quickfix" })
 
 -- Neovide macOS keybindings
 if vim.g.neovide then
-  vim.o.guifont = "Source Code Pro:h15"
   vim.keymap.set("n", "<D-s>", ":w<CR>") -- Save
   vim.keymap.set("v", "<D-c>", '"+y') -- Copy
   vim.keymap.set("n", "<D-v>", '"+P') -- Paste normal mode

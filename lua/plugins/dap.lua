@@ -1,16 +1,35 @@
 -- DAP + Python venv integration
--- Auto-clean debugpy __DEBUG__ artifact after session ends
-vim.api.nvim_create_autocmd("User", {
-  pattern = "DapSessionEnd",
-  group = vim.api.nvim_create_augroup("dap_cleanup", { clear = true }),
-  callback = function()
-    for _, f in ipairs(vim.fn.glob("__DEBUG__", false, true)) do
-      vim.fn.delete(f)
-    end
-  end,
-})
+local function cleanup_debugpy_artifacts()
+  for _, f in ipairs(vim.fn.glob("__DEBUG__", false, true)) do
+    vim.fn.delete(f)
+  end
+end
 
 return {
+  {
+    "mfussenegger/nvim-dap",
+    optional = true,
+    init = function()
+      vim.api.nvim_create_autocmd("User", {
+        pattern = "LazyLoad",
+        group = vim.api.nvim_create_augroup("dap_cleanup", { clear = true }),
+        callback = function(args)
+          if args.data ~= "nvim-dap" then
+            return
+          end
+
+          local ok, dap = pcall(require, "dap")
+          if not ok then
+            return
+          end
+
+          dap.listeners.after.event_terminated["cleanup_debugpy_artifacts"] = cleanup_debugpy_artifacts
+          dap.listeners.after.event_exited["cleanup_debugpy_artifacts"] = cleanup_debugpy_artifacts
+        end,
+      })
+    end,
+  },
+
   {
     "mfussenegger/nvim-dap-python",
     optional = true,
